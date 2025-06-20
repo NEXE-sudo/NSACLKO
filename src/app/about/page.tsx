@@ -16,7 +16,7 @@ export default function About() {
         <section className="hero-section">
           <h1 className="hero-title">ABOUT NASA SPACE APPS</h1>
           <p className="hero-subtitle">
-            The world's largest global hackathon, inspiring innovation for space
+            The world&apos;s largest global hackathon, inspiring innovation for space
             exploration and Earth challenges
           </p>
         </section>
@@ -27,7 +27,7 @@ export default function About() {
               What is NASA Space Apps Challenge?
             </h2>
             <p className="section-text">
-              NASA's International Space Apps Challenge is an annual hackathon
+              NASA&apos;s International Space Apps Challenge is an annual hackathon
               that takes place over 48 hours in cities around the world. The
               event embraces collaborative problem-solving with a goal of
               producing relevant open-source solutions to advance space
@@ -36,7 +36,7 @@ export default function About() {
             <p className="section-text">
               Each year, thousands of global citizens come together to work with
               NASA data in order to solve challenges we face on Earth and in
-              space. Space Apps is more than a hackathon - it's a community of
+              space. Space Apps is more than a hackathon - it&apos;s a community of
               innovators, scientists, coders, storytellers, makers, builders,
               technologists, and entrepreneurs.
             </p>
@@ -81,12 +81,12 @@ export default function About() {
             <p className="section-text">
               Participating in NASA Space Apps Challenge is an opportunity to
               collaborate with like-minded individuals, learn new skills, and
-              contribute to solving real-world problems. Whether you're a
+              contribute to solving real-world problems. Whether you&apos;re a
               developer, designer, scientist, or simply passionate about space
               and technology, Space Apps offers a platform to make a difference.
             </p>
             <p className="section-text">
-              By joining Space Apps, you'll gain access to NASA's open data,
+              By joining Space Apps, you&apos;ll gain access to NASA&apos;s open data,
               connect with experts and mentors, and have the chance to showcase
               your solutions on a global stage.
             </p>
@@ -160,8 +160,8 @@ export default function About() {
             <h2 className="cta-title">Ready to Make an Impact?</h2>
             <p className="cta-text">
               Join thousands of innovators worldwide in creating solutions that
-              matter. Whether you're a seasoned developer, a creative designer,
-              or simply passionate about space and technology, there's a place
+              matter. Whether you&apos;re a seasoned developer, a creative designer,
+              or simply passionate about space and technology, there&apos;s a place
               for you at NASA Space Apps.
             </p>
             <div className="cta-buttons">
