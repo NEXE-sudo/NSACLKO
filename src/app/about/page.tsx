@@ -53,7 +53,7 @@ export default function About() {
               {[
                 {
                   title: "Inspire",
-                  text: "Engage and inspire people around the world to use NASA's open data for local and global solutions",
+                  text: "Engage and inspire people around the world to use NASA&apos;s open data for local and global solutions",
                 },
                 {
                   title: "Innovate",
@@ -137,7 +137,7 @@ export default function About() {
                 {
                   number: "03",
                   title: "Build & Create",
-                  text: "Develop innovative solutions using NASA's open data, APIs, and cutting-edge technologies",
+                  text: "Develop innovative solutions using NASA&apos;s open data, APIs, and cutting-edge technologies",
                 },
                 {
                   number: "04",
