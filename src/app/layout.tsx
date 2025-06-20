@@ -20,10 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {!isGamePage && <NavBar />}
-        {!isGamePage && <Progressbar />}
+        <NavBar />
+        <SplashCursor />
+        <Progressbar />
         <Providers>{children}</Providers>
-        {!isGamePage && <Footer />}
+        <Footer />
       </body>
     </html>
   );
