@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import EffectsInitializer from "../../components/EffectsInitializer";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../components/components/ui/button";
 
 export default function RegistrationSuccessPage() {
   return (

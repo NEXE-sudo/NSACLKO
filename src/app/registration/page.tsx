@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import EffectsInitializer from "../components/EffectsInitializer";
-import { Input } from "../components/ui/input";
-import { Textarea } from "../components/ui/textarea";
+import { Input } from "../components/components/ui/input";
+import { Textarea } from "../components/components/ui/textarea";
 import { supabase } from "@/lib/client";
 import "../styles/base.css";
 import "../styles/register.css";

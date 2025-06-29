@@ -212,7 +212,7 @@
 
   /* Floating Elements */
   .floating-elements {
-    @apply absolute top-0 left-0 w-full h-full pointer-events-none;
+    @apply relative top-0 left-0 w-full h-full pointer-events-none;
     z-index: 5;
   }
 
