@@ -553,7 +553,6 @@ export default function EffectsInitializer() {
     // Initialize effects that don't need intersection observer
     initScrollFade();
     initVideoHandling();
-    initProgressBar();
     initNavbarScroll();
     initSmoothScroll();
     initFormHandling();

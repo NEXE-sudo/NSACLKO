@@ -14,7 +14,7 @@ export default function About() {
     <div className="about-container">
       <div className="about-content">
         <section className="hero-section">
-          <h1 className="hero-title">ABOUT NASA SPACE APPS</h1>
+          <h1 className="hero-title">ABOUT</h1>
           <p className="hero-subtitle">
             The world&apos;s largest global hackathon, inspiring innovation for space
             exploration and Earth challenges
@@ -44,7 +44,8 @@ export default function About() {
 
           <section className="content-section">
             <h2 className="section-title">Meet the team</h2>
-            <TiltedCarousel />
+            {/* Pass custom cards data to TiltedCarousel */}
+            <TiltedCarousel cards={require("../components/TiltedCard").defaultCardsData} />
           </section>
 
           <section className="content-section">

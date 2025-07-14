@@ -5,15 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./components/components/ui/button";
 import EffectsInitializer from "./components/EffectsInitializer";
+import Particles from "./components/Particles";
 import React, { useState } from "react";
 
-import "./styles/base.css";
-import "./styles/index.css";
+import { StarsBackground } from "@/components/animate-ui/backgrounds/stars";
+
 
 export default function Home() {
-
   return (
-    <div>
+    <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
       <Head>
         <title>My Next.js App</title>
         <meta name="description" content="Welcome to my Next.js application!" />
@@ -21,7 +21,21 @@ export default function Home() {
       </Head>
       <EffectsInitializer />
 
-      <section className="hero-video-section fade-section" id="home">
+      {/* Global Particles background, not in video section */}
+      <div style={{ width: '100%', height: '100%', position: 'fixed', top: 0, left: 0, zIndex: 0, pointerEvents: 'none' }}>
+        <Particles
+          particleColors={["#ffffff", "#ffffff"]}
+          particleCount={600}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={90}
+          moveParticlesOnHover={false}
+          alphaParticles={true}
+          disableRotation={false}
+        />
+      </div>
+
+      <section className="hero-video-section fade-section" id="home" style={{ position: 'relative', zIndex: 1 }}>
         <div className="hero-video-background">
           <div className="hero-video-container">
             <video autoPlay muted loop playsInline>
@@ -37,10 +51,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-video-overlay"></div>
+        <div className="hero-video-overlay" style={{ pointerEvents: 'none', position: 'absolute', inset: 0, zIndex: 2 }}>
+          <StarsBackground pointerEvents={false} className="absolute inset-0 w-full h-full z-0" />
+        </div>
 
-        {/* Particles will be triggered when this container comes into view */}
-        <div className="particles" id="particles"></div>
+        {/* No Particles in video section */}
 
         <div className="floating-elements">
           <div className="floating-dot"></div>
@@ -81,9 +96,23 @@ export default function Home() {
           <div className="scroll-arrow"></div>
           <div className="scroll-text">Scroll Down</div>
         </div>
+
+        {/* Smooth bottom gradient overlay for video section */}
+        <div
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: '120px',
+            zIndex: 3,
+            pointerEvents: 'none',
+            background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, #000 100%)',
+          }}
+        ></div>
       </section>
 
-      <section id="home" className="hero fade-section">
+      <section id="home" className="hero fade-section" style={{ position: 'relative', zIndex: 1 }}>
         <div className="hero-content fade-in">
           <h1 className="main-heading fade-in">Building Solutions for Space</h1>
           {/* Typing effect triggered on scroll */}
@@ -98,10 +127,11 @@ export default function Home() {
             <Link href="#about">Learn More</Link>
           </Button>
         </div>
-        <div className="hero-image fade-in"></div>
+        {/* Removed placeholder image, retain spacing */}
+        <div style={{ height: '120px', width: '100%' }}></div>
       </section>
 
-      <section id="about" className="section fade-section">
+      <section id="about" className="section fade-section" style={{ position: 'relative', zIndex: 1 }}>
         <div className="section-content stagger-container">
           <h3 className="stagger-item">Global Innovation Challenge</h3>
           <h2 className="main-heading stagger-item">Hack The Universe</h2>
@@ -122,12 +152,14 @@ export default function Home() {
             <Link href="#about">Learn More</Link>
           </Button>
         </div>
-        <div className="section-image satellite-section fade-in"></div>
+        {/* Removed placeholder image, retain spacing */}
+        <div style={{ height: '120px', width: '100%' }}></div>
       </section>
 
       <section
         id="challenges"
         className="section reverse challenges-section fade-section"
+        style={{ position: 'relative', zIndex: 1, background: 'transparent' }}
       >
         <div className="section-content stagger-container">
           <h3 className="stagger-item">Innovation Categories</h3>
@@ -150,7 +182,8 @@ export default function Home() {
             <Link href="/timeline">Event Schedule</Link>
           </Button>
         </div>
-        <div className="section-image rocket-section fade-in"></div>
+        {/* Removed placeholder image, retain spacing */}
+        <div style={{ height: '120px', width: '100%' }}></div>
       </section>
     </div>
   );

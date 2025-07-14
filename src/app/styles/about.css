@@ -130,6 +130,7 @@ span {
 
 .section-text {
   @apply text-lg text-gray-300 leading-relaxed mb-6;
+  align-items: center;
   font-weight: 300;
   line-height: 1.8;
 }

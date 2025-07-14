@@ -1,5 +1,5 @@
+import ScrollProgressBar from "./components/ScrollProgressBar";
 import NavBar from "./components/navbar";
-import Progressbar from "./components/progressbar";
 import Footer from "./components/footer";
 import { Providers } from "./components/Providers";
 
@@ -16,8 +16,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ScrollProgressBar />
         <NavBar />
-        <Progressbar />
         <Providers>{children}</Providers>
         <Footer />
       </body>

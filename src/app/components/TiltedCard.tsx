@@ -153,24 +153,43 @@ export function TiltedCard({
           transform: `rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg) scale(${transform.scale})`,
         }}
       >
-        <img
-          src={imageSrc}
-          alt={altText}
-          className="absolute top-0 left-0 object-cover rounded-2xl will-change-transform border border-gray-200 shadow-lg"
-          style={{
-            width: imageWidth,
-            height: imageHeight,
-            transform: "translateZ(0)",
-          }}
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-            if (e.currentTarget.nextElementSibling) {
-              (
-                e.currentTarget.nextElementSibling as HTMLElement
-              ).style.display = "flex";
-            }
-          }}
-        />
+        {imageSrc.endsWith(".mp4") || imageSrc.endsWith(".webm") ? (
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="absolute top-0 left-0 object-cover rounded-2xl will-change-transform border border-gray-200 shadow-lg"
+    style={{
+      width: imageWidth,
+      height: imageHeight,
+      transform: "translateZ(0)",
+    }}
+  >
+    <source src={imageSrc} type={`video/${imageSrc.split(".").pop()}`} />
+    Your browser does not support the video tag.
+  </video>
+) : (
+  <img
+    src={imageSrc}
+    alt={altText}
+    className="absolute top-0 left-0 object-cover rounded-2xl will-change-transform border border-gray-200 shadow-lg"
+    style={{
+      width: imageWidth,
+      height: imageHeight,
+      transform: "translateZ(0)",
+    }}
+    onError={(e) => {
+      e.currentTarget.style.display = "none";
+      if (e.currentTarget.nextElementSibling) {
+        (
+          e.currentTarget.nextElementSibling as HTMLElement
+        ).style.display = "flex";
+      }
+    }}
+  />
+)}
+
         <div
           className="absolute top-0 left-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex flex-col items-center justify-center text-white font-bold text-lg shadow-lg"
           style={{
@@ -211,17 +230,34 @@ export function TiltedCard({
     </figure>
   );
 }
+export type CardData = {
+  imageSrc: string;
+  captionText: string;
+  altText: string;
+  overlayContent?: React.ReactNode;
+};
 
 // TiltedCarousel Component - NOW EXPORTED
+type TiltedCarouselProps = {
+  cards?: CardData[];
+  slideInterval?: number;
+  cardsToShow?: number;
+  cardWidth?: number;
+  cardHeight?: number;
+  gap?: number;
+  numberOfCards?: number;
+};
+
 export function TiltedCarousel({
   cards = [],
   slideInterval = 3000,
-  cardsToShow = 1, // This will now correctly represent number of cards shown
+  cardsToShow = 1,
   cardWidth = 280,
   cardHeight = 350,
   gap = 24,
-  numberOfCards = 16, // Add this prop with a default value
-}) {
+  numberOfCards = 16,
+}: TiltedCarouselProps) 
+ {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -259,23 +295,33 @@ export function TiltedCarousel({
   const maxIndex = Math.max(0, totalCards - 1);
 
   // Update the auto-slide functionality in the TiltedCarousel component
-  useEffect(() => {
-    if (!isDragging) {
+useEffect(() => {
+  let initialTimeout: NodeJS.Timeout | null = null;
+
+  // Show only one card for 3 seconds on first load
+  if (!isDragging && currentIndex === 0) {
+    initialTimeout = setTimeout(() => {
       intervalRef.current = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % totalCards);
       }, slideInterval);
-    } else {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    }
+    }, 4500); // Wait 3 seconds before starting carousel
+  } else if (!isDragging) {
+    // For later cases (after dragging or skipping)
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalCards);
+    }, slideInterval);
+  }
 
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [isDragging, slideInterval, totalCards]);
+  return () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    if (initialTimeout) {
+      clearTimeout(initialTimeout);
+    }
+  };
+}, [isDragging, slideInterval, totalCards]);
+
 
   // Update navigation functions
   const goToPrevious = () => {
@@ -399,69 +445,141 @@ export function TiltedCarousel({
 // Optional: Export default cards data for reuse
 export const defaultCardsData = [
   {
-    imageSrc: "https://picsum.photos/280/350?random=1",
-    captionText: "Space Exploration",
-    altText: "Space mission",
+    imageSrc: "/pfpwa.jpg",
+    captionText: "Akshat Pande",
+    altText: "Local Lead",
     overlayContent: (
       <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
-        <h3 className="font-bold">Space Exploration</h3>
-        <p className="text-sm mt-1">Discover the cosmos</p>
+        <h3 className="font-bold">Akshat Pande</h3>
+        <p className="text-sm mt-1">Local Lead</p>
       </div>
     ),
   },
   {
-    imageSrc: "https://picsum.photos/280/350?random=2",
-    captionText: "Earth Sciences",
-    altText: "Earth from space",
+    imageSrc: "/pinkiebhaiya.jpeg",
+    captionText: "Shaurya Yadav",
+    altText: "Core Member",
     overlayContent: (
       <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
-        <h3 className="font-bold">Earth Sciences</h3>
-        <p className="text-sm mt-1">Protecting our planet</p>
+        <h3 className="font-bold">Shaurya Yadav</h3>
+        <p className="text-sm mt-1">Core Member</p>
       </div>
     ),
   },
   {
-    imageSrc: "https://picsum.photos/280/350?random=3",
-    captionText: "Innovation Hub",
-    altText: "Technology innovation",
+    imageSrc: "/Yash.jpeg",
+    captionText: "Yash",
+    altText: "Volunteer",
     overlayContent: (
       <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
-        <h3 className="font-bold">Innovation Hub</h3>
-        <p className="text-sm mt-1">Building the future</p>
+        <h3 className="font-bold">Yash Singh</h3>
+        <p className="text-sm mt-1">Organising Comittee</p>
       </div>
     ),
   },
   {
-    imageSrc: "https://picsum.photos/280/350?random=4",
-    captionText: "Global Collaboration",
-    altText: "Team collaboration",
+    imageSrc: "/culture.mp4",
+    captionText: "Amish gandhi",
+    altText: "Core Member",
     overlayContent: (
       <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
-        <h3 className="font-bold">Global Collaboration</h3>
-        <p className="text-sm mt-1">Working together</p>
+        <h3 className="font-bold">Amish Gandhi</h3>
+        <p className="text-sm mt-1">Lord of Core</p>
       </div>
     ),
   },
   {
-    imageSrc: "https://picsum.photos/280/350?random=5",
-    captionText: "Data Solutions",
-    altText: "Data visualization",
+    imageSrc: "/Jatinbhaiya.jpeg",
+    captionText: "Jatin Pandey",
+    altText: "Core Member",
     overlayContent: (
       <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
-        <h3 className="font-bold">Data Solutions</h3>
-        <p className="text-sm mt-1">Insights from space</p>
+        <h3 className="font-bold">Jatin Pandey</h3>
+        <p className="text-sm mt-1">Organising Comittee</p>
+      </div>
+    ),
+  },
+  
+   {
+    imageSrc: "/ayan.jpeg",
+    captionText: "ayan",
+    altText: "Core Member",
+    overlayContent: (
+      <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
+        <h3 className="font-bold">Ayan Ahmad</h3>
+        <p className="text-sm mt-1">Organising Comittee</p>
+      </div>
+    ),
+  },
+
+
+   {
+    imageSrc: "/areeb.jpeg",
+    captionText: "areeb",
+    altText: "Core Member",
+    overlayContent: (
+      <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
+        <h3 className="font-bold">Areeb Ahmad</h3>
+        <p className="text-sm mt-1">Organising Pookie</p>
       </div>
     ),
   },
   {
-    imageSrc: "https://picsum.photos/280/350?random=6",
-    captionText: "Future Missions",
-    altText: "Future space missions",
+    imageSrc: "/shr.jpeg",
+    captionText: "Shresth",
+    altText: "Core Member",
     overlayContent: (
       <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
-        <h3 className="font-bold">Future Missions</h3>
-        <p className="text-sm mt-1">Next frontier</p>
+        <h3 className="font-bold">Shresth Verma</h3>
+        <p className="text-sm mt-1">Lover BOi</p>
       </div>
     ),
   },
+
+  {
+    imageSrc: "/simba.jpeg",
+    captionText: "simba",
+    altText: "Core Member",
+    overlayContent: (
+      <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
+        <h3 className="font-bold">Simba Bhai</h3>
+        <p className="text-sm mt-1">Core Comittee</p>
+      </div>
+    ),
+  },
+  {
+    imageSrc: "/ansh.jpeg",
+    captionText: "simba",
+    altText: "Volunteer",
+    overlayContent: (
+      <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
+        <h3 className="font-bold">Ansh Srivastava</h3>
+        <p className="text-sm mt-1">Volunteer</p>
+      </div>
+    ),
+  },
+  {
+    imageSrc: "/saksham.jpeg",
+    captionText: "simba",
+    altText: "Volunteer",
+    overlayContent: (
+      <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
+        <h3 className="font-bold">Saksham Sharma</h3>
+        <p className="text-sm mt-1">Salmon Bhoi </p>
+      </div>
+    ),
+  },
+  {
+    imageSrc: "/Kashni.jpeg",
+    captionText: "simba",
+    altText: "Volunteer",
+    overlayContent: (
+      <div className="p-4 bg-black/60 text-white rounded-lg backdrop-blur-sm">
+        <h3 className="font-bold">Kashni Channa</h3>
+        <p className="text-sm mt-1">NSAC Enthusiast</p>
+      </div>
+    ),
+  },
+  
+  // ➕ Add more cards here manually
 ];

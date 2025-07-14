@@ -1,3 +1,9 @@
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
 /* Import Tailwind's layers */
 @tailwind base;
 @tailwind components;
@@ -175,6 +181,11 @@
     line-height: 1.6;
     overflow: visible;
     word-wrap: break-word;
+    max-width: 900px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
 
   .typing-content p {
