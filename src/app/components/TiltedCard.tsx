@@ -251,40 +251,16 @@ type TiltedCarouselProps = {
 export function TiltedCarousel({
   cards = [],
   slideInterval = 3000,
-  cardsToShow = 1,
   cardWidth = 280,
   cardHeight = 350,
-  gap = 24,
   numberOfCards = 16,
 }: TiltedCarouselProps) 
  {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setStartX(e.pageX - (carouselRef.current?.offsetLeft || 0));
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - (carouselRef.current?.offsetLeft || 0);
-    const walk = (x - startX) * 2;
-    setScrollLeft(walk);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
+  // ...existing code...
 
   // Update this section to use numberOfCards directly
   const cardsToDisplay =

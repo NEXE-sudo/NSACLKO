@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --turbopack",
+    "build": "next build --no-lint",
     "start": "next start",
     "lint": "next lint"
   },
@@ -27,7 +27,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.513.0",
-    "motion": "^12.23.5",
+    "motion": "^12.23.6",
     "next": "15.3.3",
     "npx": "^10.2.2",
     "ogl": "^1.0.11",

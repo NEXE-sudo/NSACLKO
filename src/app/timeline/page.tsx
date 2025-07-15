@@ -19,7 +19,7 @@ export default function Timeline() {
       <section id="timeline" className="timeline-section">
         <div className="timeline-container">
           <div className="timeline-header fade-in">
-            <h2 className="main-heading">Event Timeline</h2>
+            <h2 className="main-heading timeline-heading-center">Event Timeline</h2>
           </div>
           <div className="timeline-grid">
             <div className="timeline-item fade-in">

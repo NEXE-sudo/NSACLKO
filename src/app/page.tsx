@@ -1,15 +1,13 @@
 "use client";
 
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./components/components/ui/button";
 import EffectsInitializer from "./components/EffectsInitializer";
 import Particles from "./components/Particles";
-import React, { useState } from "react";
+import React from "react";
 
 import { StarsBackground } from "@/components/animate-ui/backgrounds/stars";
-
 
 export default function Home() {
   return (
@@ -66,33 +64,34 @@ export default function Home() {
         </div>
 
         <div className="hero-content-wrapper stagger-container">
-          <div className="hero-subtitle stagger-item">
-            Global Innovation Challenge
-          </div>
-          {/* This will only fade in, not type */}
-          <h1 className="hero-main-title fade-in">
-            Building Solutions
-            <br />
-            for Space
-          </h1>
-          {/* This will trigger typing effect when it comes into view */}
-          <p className="hero-description typing-content" data-typing-speed="80">
-            Join the NASA Space Apps Challenge 2025 in Lucknow - the world's
-            largest global hackathon. Use NASA's open data to develop innovative
-            solutions for challenges we face on Earth and in space.
-          </p>
-          <div className="hero-cta-buttons stagger-item">
-            <Button asChild className="hero-btn primary">
-              <Link href="/register">Register Now</Link>
-            </Button>
-
-            <Button asChild className="hero-btn primary">
-              <Link href="#about">Learn More</Link>
-            </Button>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+            <div className="hero-subtitle stagger-item" style={{ textAlign: 'center', width: '100%' }}>
+              Global Innovation Challenge
+            </div>
+            {/* This will only fade in, not type */}
+            <h1 className="hero-main-title fade-in" style={{ textAlign: 'center', width: '100%' }}>
+              Building Solutions
+              <br />
+              for Space
+            </h1>
+            {/* This will trigger typing effect when it comes into view */}
+            <p className="hero-description typing-content" data-typing-speed="80" style={{ textAlign: 'center', width: '100%' }}>
+              Join the NASA Space Apps Challenge 2025 in Lucknow - the world&apos;s
+              largest global hackathon. Use NASA&apos;s open data to develop innovative
+              solutions for challenges we face on Earth and in space.
+            </p>
+            <div className="hero-cta-buttons stagger-item" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 24 }}>
+              <Button asChild className="hero-btn primary">
+                <Link href="/register">Register Now</Link>
+              </Button>
+              <Button asChild className="hero-btn primary">
+                <Link href="#about">Learn More</Link>
+              </Button>
+            </div>
           </div>
         </div>
 
-        <div className="scroll-indicator fade-in flex flex-col items-center justify-center">
+        <div className="scroll-indicator fade-in" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'absolute', left: '50%', bottom: 40, transform: 'translateX(-50%)', pointerEvents: 'none' }}>
           <div className="scroll-arrow"></div>
           <div className="scroll-text">Scroll Down</div>
         </div>
@@ -112,48 +111,51 @@ export default function Home() {
         ></div>
       </section>
 
-      <section id="home" className="hero fade-section" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="hero-content fade-in">
-          <h1 className="main-heading fade-in">Building Solutions for Space</h1>
-          {/* Typing effect triggered on scroll */}
-          <p className="typing-content" data-typing-speed="80">
-            Join the NASA Space Apps Challenge 2025 in Lucknow - the world's
-            largest global hackathon. Use NASA's open data to develop innovative
-            solutions for challenges we face on Earth and in space. Connect with
-            brilliant minds, create groundbreaking technologies, and contribute
-            to humanity's greatest endeavors.
-          </p>
-          <Button asChild className="hero-btn primary fade-in">
-            <Link href="#about">Learn More</Link>
-          </Button>
-        </div>
-        {/* Removed placeholder image, retain spacing */}
-        <div style={{ height: '120px', width: '100%' }}></div>
-      </section>
-
       <section id="about" className="section fade-section" style={{ position: 'relative', zIndex: 1 }}>
         <div className="section-content stagger-container">
-          <h3 className="stagger-item">Global Innovation Challenge</h3>
-          <h2 className="main-heading stagger-item">Hack The Universe</h2>
-          {/* Typing effect triggered when section comes into view */}
-          <p className="typing-content" data-typing-speed="70">
-            NASA Space Apps Challenge is an international hackathon where teams
-            of technologists, scientists, designers, artists, educators,
-            entrepreneurs, and students across the globe collaborate and engage
-            with publicly available data to design innovative solutions for
-            challenges we face on Earth and in space.
-            <br />
-            Over the course of one weekend, participants around the world come
-            together to work on challenges designed by NASA. The event is free
-            to attend, and all backgrounds and skill levels are encouraged to
-            participate.
-          </p>
-          <Button asChild className="hero-btn primary stagger-item">
-            <Link href="#about">Learn More</Link>
-          </Button>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+              alignItems: 'flex-start', // Ensures children align to the top/left
+              width: '100%',
+              maxWidth: '900px',
+            }}
+          >
+            <h3 className="stagger-item" style={{ marginBottom: 0, alignSelf: 'flex-start' }}>
+              Global Innovation Challenge
+            </h3>
+            <h2 className="main-heading stagger-item" style={{ marginBottom: 0, alignSelf: 'flex-start' }}>
+              Hack The Universe
+            </h2>
+            <p
+              className="typing-content"
+              data-typing-speed="70"
+              style={{
+                margin: 0,
+                marginBottom: 64,
+                maxWidth: '700px',
+                width: '100%',
+                textAlign: 'left',
+                boxSizing: 'content-box',
+                overflowWrap: 'break-word',
+                alignSelf: 'flex-start',
+              }}
+            >
+              NASA Space Apps Challenge is an international hackathon where teams
+              of technologists, scientists, designers, artists, educators,
+              entrepreneurs, and students across the globe collaborate and engage
+              with publicly available data to design innovative solutions for
+              challenges we face on Earth and in space. Over the course of one
+              weekend, participants around the world come together to work on
+              challenges designed by NASA.
+            </p>
+            <Button asChild className="hero-btn primary stagger-item" style={{ marginTop: '10px' }}>
+              <Link href="#about">Learn More</Link>
+            </Button>
+          </div>
         </div>
-        {/* Removed placeholder image, retain spacing */}
-        <div style={{ height: '120px', width: '100%' }}></div>
       </section>
 
       <section
@@ -162,28 +164,54 @@ export default function Home() {
         style={{ position: 'relative', zIndex: 1, background: 'transparent' }}
       >
         <div className="section-content stagger-container">
-          <h3 className="stagger-item">Innovation Categories</h3>
-          <h2 className="main-heading stagger-item">Challenge Areas</h2>
-          {/* Another typing effect triggered on scroll */}
-          <p className="typing-content" data-typing-speed="75">
-            This year's challenges span multiple disciplines and focus areas,
-            from Earth observation and climate science to space exploration and
-            astrophysics. Participants can choose from challenges that range
-            from beginner-friendly to expert-level, ensuring everyone can
-            contribute meaningfully.
-            <br />
-            Each challenge provides access to relevant NASA datasets, expert
-            mentorship, and the tools needed to create impactful solutions.
-            Whether you're interested in developing mobile apps, creating data
-            visualizations, or building hardware prototypes, there's a challenge
-            for you.
-          </p>
-          <Button asChild className="hero-btn primary stagger-item">
-            <Link href="/timeline">Event Schedule</Link>
-          </Button>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+              alignItems: 'flex-start',
+              justifyContent: 'flex-start', // Ensure children start at the top
+              width: '100%',
+              maxWidth: '900px',
+            }}
+          >
+            <h3 className="stagger-item" style={{ marginBottom: 0 }}>
+              Innovation Categories
+            </h3>
+            <h2 className="main-heading stagger-item" style={{ marginBottom: 0 }}>
+              Challenge Areas
+            </h2>
+            <p
+              className="typing-content"
+              data-typing-speed="75"
+              style={{
+                margin: 0,
+                marginBottom: 64,
+                maxWidth: '700px',
+                width: '100%',
+                textAlign: 'left',
+                boxSizing: 'border-box',
+                overflowWrap: 'break-word',
+                alignSelf: 'stretch', // Stretch to fill available width, but only as tall as content
+              }}
+            >
+              This year&apos;s challenges span multiple disciplines and focus areas,
+              from Earth observation and climate science to space exploration and
+              astrophysics. Participants can choose from challenges that range
+              from beginner-friendly to expert-level, ensuring everyone can
+              contribute meaningfully.
+              <br />
+              Each challenge provides access to relevant NASA datasets, expert
+              mentorship, and the tools needed to create impactful solutions.
+              Whether you&apos;re interested in developing mobile apps, creating data
+              visualizations, or building hardware prototypes, there&apos;s a challenge
+              for you.
+            </p>
+            <Button asChild className="hero-btn primary stagger-item" style={{ marginTop: '10px', alignSelf: 'flex-start' }}>
+              <Link href="/timeline">Event Schedule</Link>
+            </Button>
+          </div>
         </div>
-        {/* Removed placeholder image, retain spacing */}
-        <div style={{ height: '120px', width: '100%' }}></div>
       </section>
     </div>
   );

@@ -32,7 +32,12 @@ export default function FooterSection() {
     return (
         <footer className="py-16 md:py-32">
             <div className="mx-auto max-w-5xl px-6">
-
+                {/* Logo and event name centered at the top of the footer */}
+                <div className="flex flex-col items-center mb-8">
+                    <div className="flex items-center gap-3">
+                        <span className="text-lg font-semibold tracking-wide">Nasa Space Apps Challenge</span>
+                    </div>
+                </div>
                 <div className="my-8 flex flex-wrap justify-center gap-6 text-sm">
                     {links.map((link, index) => (
                         <Link

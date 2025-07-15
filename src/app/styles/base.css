@@ -69,13 +69,13 @@
   .nav {
     @apply fixed top-0 w-full z-[1000] transition-all duration-500;
     padding: 25px 60px 0px 60px; /* Keep top padding, remove bottom padding */
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 1);
     backdrop-filter: blur(20px);
   }
 
   .nav.scrolled {
     padding: 25px 60px 0px 60px; /* Keep top padding, remove bottom padding */
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0, 0, 0, 1);
   }
 
   .nav-container {
