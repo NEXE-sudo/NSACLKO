@@ -6,7 +6,6 @@ import "../styles/about.css";
 import CountUp from "../components/CountUp";
 import { Button } from "../components/components/ui/button";
 import { Card, CardContent, CardTitle } from "../components/components/ui/card";
-import { TiltedCarousel } from "../components/TiltedCard";
 import Link from "next/link";
 
 export default function About() {
@@ -40,12 +39,6 @@ export default function About() {
               innovators, scientists, coders, storytellers, makers, builders,
               technologists, and entrepreneurs.
             </p>
-          </section>
-
-          <section className="content-section">
-            <h2 className="section-title">Meet the team</h2>
-            {/* Pass custom cards data to TiltedCarousel */}
-            <TiltedCarousel cards={require("../components/TiltedCard").defaultCardsData} />
           </section>
 
           <section className="content-section">

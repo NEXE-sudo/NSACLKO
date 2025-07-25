@@ -43,8 +43,8 @@ export default function Navbar() {
 
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href="/registration" className="nav-link">
-                  Register
+                <Link href="/contact" className="nav-link">
+                  Contact
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>

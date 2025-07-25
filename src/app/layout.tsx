@@ -5,8 +5,8 @@ import { Providers } from "./components/Providers";
 
 import "./styles/base.css";
 import "./styles/index.css";
-import "./styles/register.css";
 import "./styles/timeline.css";
+import "./styles/contact.css";
 
 export default function RootLayout({
   children,

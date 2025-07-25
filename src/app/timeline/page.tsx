@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 
 import EffectsInitializer from "../components/EffectsInitializer";
 
